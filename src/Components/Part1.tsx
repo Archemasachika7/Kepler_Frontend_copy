@@ -19,10 +19,10 @@ function Part1({auth}: {auth: boolean}) {
   }, []);
 
   const stats = [
-    { number: "50+", label: "Active Learners" },
+    { number: "15,725+", label: "Learners" },
     { number: "100+", label: "Coding Challenges" },
-    { number: "99.1%", label: "Job Success Rate" },
-    { number: "24/7", label: "Expert Support" }
+    { number: "99.1%", label: "Success Rate" },
+    { number: "24/7", label: "Mentor Support" }
   ];
 
   const sampleCode = `#include <iostream>
@@ -56,14 +56,23 @@ int main() {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
     const startDemo = async () => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (!isMounted) return;
       await typeCode(sampleCode, 30);
+      if (!isMounted) return;
       await new Promise((resolve) => setTimeout(resolve, 800));
+      if (!isMounted) return;
       await runCode();
     };
 
     startDemo();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const features = [
@@ -127,7 +136,7 @@ int main() {
               <div className="space-y-6">
                 <h1 className="text-3xl lg:text-5xl font-black leading-tight">
                   <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                    Shape Your Future
+                    The best platform to kick start your Journey
                   </span>
                 </h1>
 
@@ -149,11 +158,6 @@ int main() {
                 ))}
               </div>
 
-              <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
-                Master programming through interactive coding experiences. Build
-                real projects, solve challenges, and accelerate your tech
-                career.
-              </p>
             </div>
 
             {/* Features */}
@@ -172,11 +176,11 @@ int main() {
             <div className="flex space-x-4">
               <button className="px-8 py-4 bg-gradient-to-r from-green-600 to-teal-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
               onClick={() => navigate("/problems/allProblems")}>
-                Start Coding
+                Get Started Now
               </button>
               <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-200"
               onClick={() => navigate("/courses")}>
-                Explore Courses
+                Book a Demo
               </button>
             </div>
           </div>

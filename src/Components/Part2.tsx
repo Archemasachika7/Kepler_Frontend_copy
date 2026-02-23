@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Search, Target, Code, Brain, Database, Globe, Network, ChevronRight, Star, Users, BookOpen, Zap, Headphones, MessageCircle, PenTool, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Popping from "./Popping";
@@ -147,7 +147,7 @@ function Part2() {
     return val.title.toLowerCase().includes(search.toLowerCase());
   });
 
-  const handleCourseClick = (course) => {
+  const handleCourseClick = (course: { exam: string }) => {
     navigate(`/courses/${course.exam}`);
   };
 
