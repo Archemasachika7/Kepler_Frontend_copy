@@ -14,6 +14,8 @@ const Login = lazy(() => import("../Components/Login"));
 const Part1 = lazy(() => import("../Components/Part1"));
 const Part2 = lazy(() => import("../Components/Part2"));
 const Register = lazy(() => import("../Components/Signup"));
+const LandingPage = lazy(() => import("../Components/landing/LandingPage"));
+const AuthPage = lazy(() => import("../Components/landing/AuthPage"));
 const Landing = lazy(() => import("../Components/Landing"));
 const QueryBox = lazy(() => import("../Components/QueryBox"));
 const Otpverify = lazy(() => import("../Components/VerifyOTP"));
@@ -46,23 +48,8 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
         {
           index: true,
           element: (
-            <Suspense>
-              <div>
-                <Popping>
-                  <Part1 auth = {authenticated}/>
-                </Popping>
-                <Part2 />
-                <Popping>
-                  <ReferCodeCaller details={details} auth = {authenticated}/>
-                </Popping>
-                <Numbers />
-                <Popping>
-                  <QueryBox />
-                </Popping>
-                <Popping>
-                  <Footer />
-                </Popping>
-              </div>
+            <Suspense fallback={<div>Loading...</div>}>
+              <LandingPage />
             </Suspense>
           ),
         },
@@ -86,7 +73,7 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
           path: "/login",
           element: (
             <Suspense fallback={<div>Loading...</div>}>
-              <Login />
+              <AuthPage />
             </Suspense>
           ),
         },
@@ -102,7 +89,7 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
           path: "/register",
           element: (
             <Suspense fallback={<div>Loading...</div>}>
-              <Register />
+              <AuthPage />
             </Suspense>
           ),
         },
