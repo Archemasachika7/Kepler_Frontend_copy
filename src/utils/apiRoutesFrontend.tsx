@@ -6,16 +6,13 @@ import Connection_Landing from "../Components/Connections/Connection_Landing";
 import AdminDashboard from "../Components/AdminDashboard/AdminDashboard";
 import CourseToStudentList from "../Components/AdminDashboard/CourseToStudentList";
 import StudentTracker from "../Components/AdminDashboard/StudentTracker";
-import ReferCodeCaller from "../Components/ReferCodeCaller";
 const DailyProblemsPage = lazy(() => import("../Components/DailyProblems/DailyProblemsPage"));
 
 const MainLayout = lazy(()=>import("./MainLayout"))
 const Login = lazy(() => import("../Components/Login"));
-const Part1 = lazy(() => import("../Components/Part1"));
-const Part2 = lazy(() => import("../Components/Part2"));
+const HomePage = lazy(() => import("../Components/HomePage"));
 const Register = lazy(() => import("../Components/Signup"));
 const Landing = lazy(() => import("../Components/Landing"));
-const QueryBox = lazy(() => import("../Components/QueryBox"));
 const Otpverify = lazy(() => import("../Components/VerifyOTP"));
 const Meet = lazy(() => import("../Components/Meet"));
 const MeetingRoom = lazy(() => import("../Components/MeetingRoom"));
@@ -24,7 +21,6 @@ const LibraryUI = lazy(() => import("../Components/Library"));
 const About = lazy(() => import("../Components/About"));
 const Courses = lazy(() => import("../Components/Courses"));
 const ReadBook = lazy(() => import("../Components/ReadBook"));
-const Popping = lazy(() => import("../Components/Popping"));
 const LiveUsers = lazy(() => import("../Components/Live_Usere"));
 const HistoryUsers = lazy(() => import("../Components/History_Users"));
 const Course_Details = lazy(() => import("../Components/Course_Details"));
@@ -32,10 +28,8 @@ const ReferCode = lazy(() => import("../Components/ReferCode"));
 const Course_Schedules = lazy(() => import("../Components/Course_Schedules"));
 const GroupChat = lazy(() => import("../Components/GroupChat"));
 const Library_main = lazy(() => import("../Components/Library_main"));
-const Numbers = lazy(() => import("../Components/Numbers"));
 const Login_Auth = lazy(() => import("../Components/Login_Auth"));
 const AuthRegister = lazy(() => import("../Components/AuthRegister"));
-const Footer = lazy(() => import("../Components/Footer"));
 
 export const RouterFrontend = (authenticated: boolean, details: userdetails | undefined) => {
   return createBrowserRouter([
@@ -47,22 +41,7 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
           index: true,
           element: (
             <Suspense>
-              <div>
-                <Popping>
-                  <Part1 auth = {authenticated}/>
-                </Popping>
-                <Part2 />
-                <Popping>
-                  <ReferCodeCaller details={details} auth = {authenticated}/>
-                </Popping>
-                <Numbers />
-                <Popping>
-                  <QueryBox />
-                </Popping>
-                <Popping>
-                  <Footer />
-                </Popping>
-              </div>
+              <HomePage authenticated={authenticated} details={details} />
             </Suspense>
           ),
         },
