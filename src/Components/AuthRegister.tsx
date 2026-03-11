@@ -126,28 +126,13 @@ function AuthRegister() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/3 w-48 h-48 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-[var(--background)] flex items-center justify-center p-4">
       {/* Main Container */}
       <div className="relative w-full max-w-2xl">
-        <div className="bg-white/80 backdrop-blur-lg shadow-2xl rounded-3xl border border-white/20 overflow-hidden">
+        <div className="glass-card rounded-2xl overflow-hidden">
           {/* Header Section */}
-          <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 px-8 py-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-black opacity-10"></div>
-            <div className="absolute inset-0">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16 opacity-10"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12 opacity-10"></div>
-            </div>
+          <div className="bg-blue-600 px-8 py-12 text-center relative overflow-hidden">
             <div className="relative z-10">
-              <div className="text-4xl mb-4">🚀</div>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
                 Join Kepler 22B
               </h1>
@@ -155,7 +140,6 @@ function AuthRegister() {
                 Complete your registration to unlock the future of tech
                 education
               </p>
-              <div className="mt-4 w-16 h-1 bg-white/30 mx-auto rounded-full"></div>
             </div>
           </div>
 
@@ -167,14 +151,14 @@ function AuthRegister() {
                 <div className="space-y-2">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-semibold text-gray-700"
+                    className="block text-sm font-semibold text-[var(--foreground)]"
                   >
                     Full Name *
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                       <svg
-                        className="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-[var(--muted-foreground)]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -192,7 +176,7 @@ function AuthRegister() {
                       id="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                      className="w-full pl-12 pr-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--muted)] focus:bg-[var(--background)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                       placeholder="Enter your full name"
                       required
                     />
@@ -202,14 +186,14 @@ function AuthRegister() {
                 <div className="space-y-2">
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-semibold text-gray-700"
+                    className="block text-sm font-semibold text-[var(--foreground)]"
                   >
                     Phone Number *
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                       <svg
-                        className="h-5 w-5 text-gray-400"
+                        className="h-5 w-5 text-[var(--muted-foreground)]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -227,7 +211,7 @@ function AuthRegister() {
                       id="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                      className="w-full pl-12 pr-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--muted)] focus:bg-[var(--background)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                       placeholder="Enter your phone number"
                       required
                     />
@@ -237,14 +221,14 @@ function AuthRegister() {
 
               {/* Country Details */}
               <div className="space-y-4">
-                <label className="block text-sm font-semibold text-slate-700">
+                <label className="block text-sm font-semibold text-[var(--foreground)]">
                   Country
                 </label>
                 <select
                   id="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                   required
                 >
                   <option value="">Select Country</option>
@@ -262,16 +246,16 @@ function AuthRegister() {
                   <div key={id} className="space-y-2">
                     <label
                       htmlFor={id}
-                      className="block text-sm font-semibold text-slate-700"
+                      className="block text-sm font-semibold text-[var(--foreground)]"
                     >
                       {id === "state" ? "State" : "City"}
                     </label>
                     <input
-                      type="city"
+                      type="text"
                       id={id}
                       value={formData[id]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       placeholder={
                         id === "city" ? "Enter your city" : "Enter your state"
                       }
@@ -283,18 +267,14 @@ function AuthRegister() {
 
               {/* Education Type Selection */}
               <div className="space-y-3">
-                <label className="block text-sm font-semibold text-gray-700">
+                <label className="block text-sm font-semibold text-[var(--foreground)]">
                   Education Level *
                 </label>
                 <div className="flex flex-col sm:flex-row gap-4">
                   {["school", "college", "working"].map((type) => (
                     <label
                       key={type}
-                      className={`relative flex-1 cursor-pointer transition-all duration-200 ${
-                        formData.educationType === type
-                          ? "transform scale-105"
-                          : "hover:scale-102"
-                      }`}
+                      className="relative flex-1 cursor-pointer"
                     >
                       <input
                         type="radio"
@@ -304,22 +284,8 @@ function AuthRegister() {
                         checked={formData.educationType === type}
                         onChange={handleChange}
                       />
-                      <div
-                        className={`p-4 rounded-xl border-2 text-center transition-all duration-200 ${
-                          formData.educationType === type
-                            ? "border-blue-500 bg-blue-50 shadow-lg"
-                            : "border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50"
-                        }`}
-                      >
-                        <div
-                          className={`font-semibold ${
-                            formData.educationType === type
-                              ? "text-blue-700"
-                              : "text-gray-700"
-                          }`}
-                        >
-                          {type.charAt(0).toUpperCase() + type.slice(1)}
-                        </div>
+                      <div className="w-full p-4 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-center font-medium text-[var(--foreground)] transition-all duration-200 peer-checked:bg-blue-500/10 peer-checked:border-blue-500 peer-checked:text-blue-600 dark:peer-checked:text-blue-400 hover:border-[var(--muted-foreground)]">
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
                       </div>
                     </label>
                   ))}
@@ -328,16 +294,15 @@ function AuthRegister() {
 
               {/* School Fields */}
               {formData.educationType === "school" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
-                  <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                    <span className="mr-2">🏫</span>
+                <div className="space-y-6 p-6 bg-blue-500/5 dark:bg-blue-500/10 rounded-2xl border border-blue-500/20">
+                  <h3 className="text-lg font-semibold text-[var(--foreground)] flex items-center">
                     School Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label
                         htmlFor="school"
-                        className="block text-sm font-semibold text-gray-700"
+                        className="block text-sm font-semibold text-[var(--foreground)]"
                       >
                         School Name *
                       </label>
@@ -346,7 +311,7 @@ function AuthRegister() {
                         id="school"
                         value={formData.school}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                        className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                         placeholder="Enter your school name"
                         required
                       />
@@ -354,7 +319,7 @@ function AuthRegister() {
                     <div className="space-y-2">
                       <label
                         htmlFor="school_year"
-                        className="block text-sm font-semibold text-gray-700"
+                        className="block text-sm font-semibold text-[var(--foreground)]"
                       >
                         Current Grade *
                       </label>
@@ -362,7 +327,7 @@ function AuthRegister() {
                         id="school_year"
                         value={formData.school_year}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                        className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)]"
                         required
                       >
                         <option value="">Select Grade</option>
@@ -379,16 +344,15 @@ function AuthRegister() {
 
               {/* College Fields */}
               {formData.educationType === "college" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl border border-purple-100">
-                  <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                    <span className="mr-2">🎓</span>
+                <div className="space-y-6 p-6 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-2xl border border-indigo-500/20">
+                  <h3 className="text-lg font-semibold text-[var(--foreground)] flex items-center">
                     College Information
                   </h3>
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <label
                         htmlFor="college"
-                        className="block text-sm font-semibold text-gray-700"
+                        className="block text-sm font-semibold text-[var(--foreground)]"
                       >
                         College/University Name *
                       </label>
@@ -397,7 +361,7 @@ function AuthRegister() {
                         id="college"
                         value={formData.college}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                        className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                         placeholder="Enter your college/university name"
                         required
                       />
@@ -406,7 +370,7 @@ function AuthRegister() {
                       <div className="space-y-2">
                         <label
                           htmlFor="college_stream"
-                          className="block text-sm font-semibold text-gray-700"
+                          className="block text-sm font-semibold text-[var(--foreground)]"
                         >
                           Degree Level *
                         </label>
@@ -414,7 +378,7 @@ function AuthRegister() {
                           id="college_stream"
                           value={formData.college_stream}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                          className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)]"
                           required
                         >
                           <option value="">Select Degree Level</option>
@@ -429,7 +393,7 @@ function AuthRegister() {
                         <div className="space-y-2">
                           <label
                             htmlFor="college_year"
-                            className="block text-sm font-semibold text-gray-700"
+                            className="block text-sm font-semibold text-[var(--foreground)]"
                           >
                             Year of Study *
                           </label>
@@ -437,7 +401,7 @@ function AuthRegister() {
                             id="college_year"
                             value={formData.college_year}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                            className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)]"
                             required
                           >
                             <option value="">Select Year</option>
@@ -456,7 +420,7 @@ function AuthRegister() {
                       <div className="space-y-2">
                         <label
                           htmlFor="college_department"
-                          className="block text-sm font-semibold text-gray-700"
+                          className="block text-sm font-semibold text-[var(--foreground)]"
                         >
                           Department *
                         </label>
@@ -465,7 +429,7 @@ function AuthRegister() {
                           id="college_department"
                           value={formData.college_department}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+                          className="w-full px-4 py-3 border border-[var(--border)] rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-[var(--card)] text-[var(--foreground)] placeholder-[var(--muted-foreground)]"
                           placeholder="Enter your department"
                           required
                         />
@@ -477,22 +441,22 @@ function AuthRegister() {
 
               {/* Working fields */}
               {formData.educationType === "working" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100">
+                <div className="space-y-6 p-6 bg-purple-500/5 dark:bg-purple-500/10 rounded-2xl border border-purple-500/20">
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <h3 className="text-lg font-semibold text-slate-800">
+                    <h3 className="text-lg font-semibold text-[var(--foreground)]">
                       Work Information
                     </h3>
                   </div>
                   <div className="space-y-4">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       Country
                     </label>
                     <select
                       id="work_country"
                       value={formData.work_country}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       required
                     >
                       <option value="">Select Country</option>
@@ -514,7 +478,7 @@ function AuthRegister() {
                       <div key={id} className="space-y-2">
                         <label
                           htmlFor={id}
-                          className="block text-sm font-semibold text-slate-700"
+                          className="block text-sm font-semibold text-[var(--foreground)]"
                         >
                           {label}
                         </label>
@@ -523,7 +487,7 @@ function AuthRegister() {
                           id={id}
                           value={formData[id]}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                          className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                           placeholder={`Enter your ${label.toLowerCase()}`}
                           required
                         />
@@ -537,15 +501,15 @@ function AuthRegister() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-4 px-6 font-semibold text-lg rounded-xl transition-all duration-300 ${
+                className={`w-full py-4 px-6 font-semibold text-lg rounded-xl transition-all duration-200 ${
                   loading
-                    ? "bg-gray-400 text-gray-600 cursor-not-allowed transform scale-95"
-                    : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl hover:scale-105 shadow-lg"
+                    ? "bg-zinc-400 dark:bg-zinc-600 text-white cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-500 text-white shadow-lg hover:shadow-xl active:scale-[0.98]"
                 }`}
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
-                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
                     Creating Your Account...
                   </div>
                 ) : (
@@ -570,45 +534,23 @@ function AuthRegister() {
             </form>
 
             {/* Login Link */}
-            <div className="mt-8 text-center">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-white text-gray-500">
-                    Already have an account?
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4">
-                <Link
-                  to="/login"
-                  className="inline-flex items-center px-6 py-3 border border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-200 hover:shadow-lg"
-                >
-                  Sign In to Your Account
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                    />
-                  </svg>
-                </Link>
-              </div>
+            <div className="mt-8 pt-6 border-t border-[var(--border)] text-center">
+              <p className="text-[var(--muted-foreground)] mb-4">
+                Already have an account?
+              </p>
+              <Link
+                to="/login"
+                className="inline-flex items-center px-6 py-3 border border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary)] hover:text-white transition-all duration-200"
+              >
+                Sign In to Your Account
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Trust Indicators */}
         <div className="mt-8 text-center">
-          <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
+          <div className="flex items-center justify-center space-x-6 text-sm text-[var(--muted-foreground)]">
             <div className="flex items-center">
               <svg
                 className="w-5 h-5 text-green-500 mr-2"
@@ -640,22 +582,6 @@ function AuthRegister() {
                 />
               </svg>
               Instant Access
-            </div>
-            <div className="flex items-center">
-              <svg
-                className="w-5 h-5 text-purple-500 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-              Free to Join
             </div>
           </div>
         </div>

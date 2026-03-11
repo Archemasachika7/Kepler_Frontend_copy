@@ -126,18 +126,11 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-500"></div>
-      </div>
-
+    <div className="min-h-screen bg-[var(--background)] flex items-center justify-center p-4 relative overflow-hidden">
       <div className="relative w-full max-w-2xl">
-        <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/20 overflow-hidden">
+        <div className="glass-card rounded-2xl overflow-hidden">
           {/* Header Section */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-8 py-10 text-center">
+          <div className="bg-blue-600 px-8 py-10 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl backdrop-blur-sm mb-4">
               <svg
                 className="w-8 h-8 text-white"
@@ -170,7 +163,7 @@ function Register() {
                   <div key={id} className="space-y-2">
                     <label
                       htmlFor={id}
-                      className="block text-sm font-semibold text-slate-700"
+                      className="block text-sm font-semibold text-[var(--foreground)]"
                     >
                       {id.charAt(0).toUpperCase() +
                         id.slice(1).replace(/([A-Z])/g, " $1")}
@@ -186,7 +179,7 @@ function Register() {
                       id={id}
                       value={formData[id]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 placeholder-[var(--muted-foreground)]"
                       placeholder={`Enter your ${id}`}
                       required={
                         !(id === "password" || id === "confirmPassword")
@@ -200,7 +193,7 @@ function Register() {
               <div className="space-y-2">
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-semibold text-slate-700"
+                  className="block text-sm font-semibold text-[var(--foreground)]"
                 >
                   Phone Number
                 </label>
@@ -209,7 +202,7 @@ function Register() {
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 placeholder-[var(--muted-foreground)]"
                   placeholder="Enter your phone number"
                   required
                 />
@@ -221,7 +214,7 @@ function Register() {
                   <div key={id} className="space-y-2">
                     <label
                       htmlFor={id}
-                      className="block text-sm font-semibold text-slate-700"
+                      className="block text-sm font-semibold text-[var(--foreground)]"
                     >
                       {id === "confirmPassword"
                         ? "Confirm Password"
@@ -232,7 +225,7 @@ function Register() {
                       id={id}
                       value={formData[id]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       placeholder={
                         id === "confirmPassword"
                           ? "Confirm your password"
@@ -246,14 +239,14 @@ function Register() {
 
               {/* Country Details */}
               <div className="space-y-4">
-                <label className="block text-sm font-semibold text-slate-700">
+                <label className="block text-sm font-semibold text-[var(--foreground)]">
                   Country
                 </label>
                 <select
                   id="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                   required
                 >
                   <option value="">Select Country</option>
@@ -271,16 +264,16 @@ function Register() {
                   <div key={id} className="space-y-2">
                     <label
                       htmlFor={id}
-                      className="block text-sm font-semibold text-slate-700"
+                      className="block text-sm font-semibold text-[var(--foreground)]"
                     >
                       {id === "state" ? "State" : "City"}
                     </label>
                     <input
-                      type="city"
+                      type="text"
                       id={id}
                       value={formData[id]}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       placeholder={
                         id === "city" ? "Enter your city" : "Enter your state"
                       }
@@ -292,7 +285,7 @@ function Register() {
 
               {/* Education Type */}
               <div className="space-y-4">
-                <label className="block text-sm font-semibold text-slate-700">
+                <label className="block text-sm font-semibold text-[var(--foreground)]">
                   Education Level
                 </label>
                 <div className="flex gap-4">
@@ -309,9 +302,8 @@ function Register() {
                         checked={formData.educationType === type}
                         onChange={handleChange}
                       />
-                      <div className="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl text-center font-medium text-slate-700 transition-all duration-200 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-checked:text-blue-700 peer-checked:shadow-md hover:border-slate-300">
+                      <div className="w-full p-4 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-center font-medium text-[var(--foreground)] transition-all duration-200 peer-checked:bg-blue-500/10 peer-checked:border-blue-500 peer-checked:text-blue-600 dark:peer-checked:text-blue-400 hover:border-[var(--muted-foreground)]">
                         <div className="flex items-center justify-center space-x-2">
-                          <div className="w-2 h-2 bg-current rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                           <span className="capitalize">{type}</span>
                         </div>
                       </div>
@@ -322,16 +314,16 @@ function Register() {
 
               {/* School Fields */}
               {formData.educationType === "school" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
+                <div className="space-y-6 p-6 bg-blue-500/5 dark:bg-blue-500/10 rounded-2xl border border-blue-500/20">
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <h3 className="text-lg font-semibold text-slate-800">
+                    <h3 className="text-lg font-semibold text-[var(--foreground)]">
                       School Information
                     </h3>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       School Name
                     </label>
                     <input
@@ -339,21 +331,21 @@ function Register() {
                       id="school"
                       value={formData.school}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       placeholder="Enter your school name"
                       required
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       School Year
                     </label>
                     <select
                       id="school_year"
                       value={formData.school_year}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       required
                     >
                       <option value="">Select Year</option>
@@ -369,23 +361,23 @@ function Register() {
 
               {/* College Fields */}
               {formData.educationType === "college" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100">
+                <div className="space-y-6 p-6 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-2xl border border-indigo-500/20">
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    <h3 className="text-lg font-semibold text-slate-800">
+                    <h3 className="text-lg font-semibold text-[var(--foreground)]">
                       College Information
                     </h3>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       College Name
                     </label>
                     <select
                       id="college"
                       value={formData.college}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                       required
                     >
                       <option value="">Select College Name</option>
@@ -398,14 +390,14 @@ function Register() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       College Stream
                     </label>
                     <select
                       id="college_stream"
                       value={formData.college_stream}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                       required
                     >
                       <option value="">Select Stream</option>
@@ -420,14 +412,14 @@ function Register() {
                   {formData.college_stream !== "PhD" &&
                     formData.college_stream && (
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-slate-700">
+                        <label className="block text-sm font-semibold text-[var(--foreground)]">
                           Year of Study
                         </label>
                         <select
                           id="college_year"
                           value={formData.college_year}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                          className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                           required
                         >
                           <option value="">Select Year</option>
@@ -444,7 +436,7 @@ function Register() {
                     )}
                     
                   <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       Department 
                     </label>
                     <input
@@ -452,7 +444,7 @@ function Register() {
                       id="college_department"
                       value={formData.college_department}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                       placeholder="Enter your department"
                       required
                     />
@@ -462,22 +454,22 @@ function Register() {
               )}
               {/* Working fields */}
               {formData.educationType === "working" && (
-                <div className="space-y-6 p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl border border-purple-100">
+                <div className="space-y-6 p-6 bg-purple-500/5 dark:bg-purple-500/10 rounded-2xl border border-purple-500/20">
                   <div className="flex items-center space-x-2 mb-4">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <h3 className="text-lg font-semibold text-slate-800">
+                    <h3 className="text-lg font-semibold text-[var(--foreground)]">
                       Work Information
                     </h3>
                   </div>
                   <div className="space-y-4">
-                    <label className="block text-sm font-semibold text-slate-700">
+                    <label className="block text-sm font-semibold text-[var(--foreground)]">
                       Country
                     </label>
                     <select
                       id="work_country"
                       value={formData.work_country}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border-2 border-slate-200 rounded-xl text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-[var(--foreground)] focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                       required
                     >
                       <option value="">Select Country</option>
@@ -499,7 +491,7 @@ function Register() {
                       <div key={id} className="space-y-2">
                         <label
                           htmlFor={id}
-                          className="block text-sm font-semibold text-slate-700"
+                          className="block text-sm font-semibold text-[var(--foreground)]"
                         >
                           {label}
                         </label>
@@ -508,7 +500,7 @@ function Register() {
                           id={id}
                           value={formData[id]}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all duration-200"
+                          className="w-full px-4 py-3 bg-[var(--muted)] border border-[var(--border)] rounded-xl text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:border-blue-500 focus:bg-[var(--background)] focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                           placeholder={`Enter your ${label.toLowerCase()}`}
                           required
                         />
@@ -525,8 +517,8 @@ function Register() {
                 disabled={loading}
                 className={`w-full py-4 px-6 font-bold text-white rounded-xl transition-all duration-200 transform ${
                   loading
-                    ? "bg-slate-400 cursor-not-allowed scale-95"
-                    : "bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+                    ? "bg-zinc-400 dark:bg-zinc-600 cursor-not-allowed scale-95"
+                    : "bg-blue-600 hover:bg-blue-500 active:scale-95 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500/50"
                 }`}
               >
                 <div className="flex items-center justify-center space-x-3">
@@ -541,12 +533,12 @@ function Register() {
             </form>
 
             {/* Login Link */}
-            <div className="mt-8 pt-6 border-t border-slate-200 text-center">
-              <p className="text-slate-600">
+            <div className="mt-8 pt-6 border-t border-[var(--border)] text-center">
+              <p className="text-[var(--muted-foreground)]">
                 Already have an account?{" "}
                 <a
                   href="/login"
-                  className="font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 hover:underline"
+                  className="font-semibold text-[var(--primary)] hover:opacity-80 transition-opacity duration-200"
                 >
                   Sign in here
                 </a>
@@ -557,9 +549,9 @@ function Register() {
 
         {/* Footer Badge */}
         <div className="text-center mt-8">
-          <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/20">
+          <div className="inline-flex items-center px-4 py-2 glass-card rounded-full">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            <span className="text-sm font-medium text-slate-600">
+            <span className="text-sm font-medium text-[var(--muted-foreground)]">
               Secure Registration
             </span>
           </div>
