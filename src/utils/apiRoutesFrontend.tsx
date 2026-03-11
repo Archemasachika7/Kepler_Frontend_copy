@@ -53,10 +53,7 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
           ),
         },
         {
-          element: <MainLayout auth = {authenticated} details = {details}/>,
-          children: [
-            {
-              path: "authlogin/:email",
+          path: "/authlogin/:email",
           element: (
             <Suspense fallback={<div>Loading...</div>}>
               <Login_Auth />
@@ -95,6 +92,9 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
             </Suspense>
           ),
         },
+        {
+          element: <MainLayout auth = {authenticated} details = {details}/>,
+          children: [
         {
           path: "/admins/liveusers",
           element: (
