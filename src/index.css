@@ -163,7 +163,7 @@ body {
 }
 
 .dark .custom-swal-popup {
-  background: #18181b !important;
+  background: var(--background) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
