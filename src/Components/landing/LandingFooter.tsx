@@ -8,7 +8,7 @@ const footerLinks = {
     { label: "Free Resources", href: "#free-resources" },
   ],
   Company: [
-    { label: "About", href: "#" },
+    { label: "About Us", href: "/aboutus" },
     { label: "Blog", href: "#" },
     { label: "Careers", href: "#" },
     { label: "Contact", href: "#" },

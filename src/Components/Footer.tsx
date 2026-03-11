@@ -44,6 +44,13 @@ const Footer = () => {
               <p className="text-gray-300 leading-relaxed mb-6">
                 Transforming careers through innovative coding education. Master DSA, Web Dev, AI/ML, and programming with hands-on projects and expert mentorship.
               </p>
+              <div 
+                onClick={() => navigate('/aboutus')}
+                className="inline-flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors cursor-pointer group"
+              >
+                <span className="font-medium">About Us</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
             </div>
 
             {/* Quick Links */}
