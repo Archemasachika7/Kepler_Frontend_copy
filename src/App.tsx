@@ -23,28 +23,21 @@ function App() {
   // Custom Swal configuration
   const showSignInAlert = async () => {
     const signInAlert = await Swal.fire({
-      title: '🔐 Sign In Required',
+      title: 'Sign In Required',
       html: `
-        <div style="text-align: center; margin-top: 1rem;">
-          <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-            Unlock premium features and enhance your experience
+        <div style="text-align: center; margin-top: 0.75rem;">
+          <p style="font-size: 0.95rem; color: var(--muted-foreground); margin-bottom: 0.75rem;">
+            Sign in to access your personalized dashboard, advanced features, and priority support.
           </p>
-          <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-            <strong>✨ Premium Benefits:</strong><br/>
-            • Advanced features<br/>
-            • Personalized dashboard<br/>
-            • Priority support
-          </div>
         </div>
       `,
       showCancelButton: true,
-      cancelButtonText: '⏰ Maybe Later',
-      confirmButtonText: '🚀 Sign In Now',
+      cancelButtonText: 'Maybe Later',
+      confirmButtonText: 'Sign In',
       allowOutsideClick: false,
       allowEscapeKey: false,
-      width: '450px',
-      padding: '2rem',
-      // Add custom CSS class if you want to use alternative styles
+      width: '400px',
+      padding: '1.5rem',
       customClass: {
         popup: 'custom-swal-popup',
         title: 'custom-swal-title',
@@ -52,15 +45,6 @@ function App() {
         confirmButton: 'custom-swal-confirm',
         cancelButton: 'custom-swal-cancel'
       },
-      // Animation settings
-      showClass: {
-        popup: 'swal2-show',
-        backdrop: 'swal2-backdrop-show'
-      },
-      hideClass: {
-        popup: 'swal2-hide',
-        backdrop: 'swal2-backdrop-hide'
-      }
     });
     
     return signInAlert;

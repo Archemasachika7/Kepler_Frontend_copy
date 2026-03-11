@@ -4,7 +4,7 @@ import api from "../utils/api";
 import apiRoutes from "../utils/Routes/apiRoutes";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
-import { CheckCircle, Shield, Sparkles, Loader2, Rocket, Star } from "lucide-react";
+import { CheckCircle, Shield, Sparkles, Loader2, Rocket } from "lucide-react";
 
 const loginFunction = async (emailID: string) => {
   const { data } = await api.post(apiRoutes.auth.login.authLogin, {
@@ -89,216 +89,109 @@ function Login_Auth() {
   const CurrentIcon = currentStepData.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-purple-950/20 to-gray-950 flex items-center justify-center p-6 overflow-hidden">
-      {/* Advanced Background Effects */}
-      <div className="absolute inset-0">
-        {/* Animated Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-600/20 to-purple-600/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-pink-600/20 to-orange-600/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse animation-delay-4000"></div>
-        
-        {/* Floating Stars */}
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-white/20 animate-twinkle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              fontSize: `${Math.random() * 10 + 8}px`
-            }}
-          >
-            ✦
-          </div>
-        ))}
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-16"></div>
-      </div>
-
+    <div className="min-h-screen bg-[var(--background)] flex items-center justify-center p-6">
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-2xl">
+      <div className="relative z-10 w-full max-w-md">
         {/* Kepler Logo */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center space-x-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-7 h-7 text-white" />
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center space-x-3 mb-3">
+            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold text-[var(--foreground)]">
               KEPLER
             </span>
           </div>
-          <div className="text-gray-400 text-sm">Next-Generation EdTech Platform</div>
+          <div className="text-[var(--muted-foreground)] text-sm">Authenticating your session</div>
         </div>
 
         {/* Main Authentication Card */}
-        <div className="bg-white/[0.08] backdrop-blur-2xl rounded-3xl border border-white/20 p-12 shadow-2xl">
+        <div className="glass-card rounded-2xl p-8">
           {/* Status Icon */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <div className="relative inline-flex">
-              <div className="w-24 h-24 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full flex items-center justify-center border-4 border-white/10 backdrop-blur-sm">
+              <div className="w-16 h-16 bg-blue-500/10 dark:bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/20">
                 {step < 4 ? (
-                  <Loader2 className="w-12 h-12 text-purple-400 animate-spin" />
+                  <Loader2 className="w-8 h-8 text-blue-500 dark:text-blue-400 animate-spin" />
                 ) : (
-                  <CurrentIcon className="w-12 h-12 text-green-400" />
+                  <CurrentIcon className="w-8 h-8 text-green-500 dark:text-green-400" />
                 )}
               </div>
-              
-              {/* Pulsing Ring Effect */}
-              <div className="absolute inset-0 rounded-full border-2 border-purple-400/50 animate-ping"></div>
-              <div className="absolute inset-2 rounded-full border border-cyan-400/30 animate-pulse"></div>
             </div>
           </div>
 
           {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-gray-400">Authentication Progress</span>
-              <span className="text-sm text-purple-400 font-semibold">{progress}%</span>
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm text-[var(--muted-foreground)]">Progress</span>
+              <span className="text-sm text-[var(--primary)] font-medium">{progress}%</span>
             </div>
-            <div className="h-2 bg-gray-800/50 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-[var(--muted)] rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full transition-all duration-1000 ease-out relative"
+                className="h-full bg-blue-500 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${progress}%` }}
-              >
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-              </div>
+              />
             </div>
           </div>
 
           {/* Current Step Information */}
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-2xl font-bold text-white">
+          <div className="text-center space-y-2 mb-6">
+            <h2 className="text-lg font-semibold text-[var(--foreground)]">
               {currentStepData.title}
             </h2>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-sm text-[var(--muted-foreground)]">
               {currentStepData.description}
             </p>
           </div>
 
           {/* Step Indicators */}
-          <div className="flex items-center justify-center space-x-4 mb-8">
+          <div className="flex items-center justify-center gap-3 mb-6">
             {authSteps.map((stepData, index) => {
               const StepIcon = stepData.icon;
               const isActive = index <= step;
               const isCurrent = index === step;
               
               return (
-                <div key={index} className="flex flex-col items-center space-y-2">
+                <div key={index} className="flex flex-col items-center gap-1.5">
                   <div className={`
-                    w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500
+                    w-9 h-9 rounded-full flex items-center justify-center transition-all duration-500
                     ${isActive 
-                      ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white scale-110' 
-                      : 'bg-gray-700/50 text-gray-500'
+                      ? 'bg-blue-500 text-white' 
+                      : 'bg-[var(--muted)] text-[var(--muted-foreground)]'
                     }
-                    ${isCurrent ? 'ring-4 ring-purple-400/30 animate-pulse' : ''}
+                    ${isCurrent ? 'ring-2 ring-blue-500/30' : ''}
                   `}>
-                    <StepIcon className="w-5 h-5" />
+                    <StepIcon className="w-4 h-4" />
                   </div>
-                  <div className={`text-xs font-medium transition-colors duration-300 ${
-                    isActive ? 'text-purple-400' : 'text-gray-600'
+                  <div className={`text-[10px] font-medium transition-colors duration-300 ${
+                    isActive ? 'text-[var(--primary)]' : 'text-[var(--muted-foreground)]'
                   }`}>
-                    Step {index + 1}
+                    {index + 1}
                   </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Your Original Message with Professional Styling */}
-          <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-2xl p-6 mb-6">
-            <div className="text-blue-300 font-medium mb-2">
-              Your credentials have been verified successfully.
-            </div>
-            <div className="text-gray-300 mb-2">
-              You are going to be directed to the website shortly.
-            </div>
-            <div className="text-gray-400 text-sm">
-              Please wait patiently.
-            </div>
-          </div>
-
-          {/* Original Image with Modern Frame */}
-          <div className="relative">
-            <div className="rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 p-2">
-              <img
-                src="/Images/milky-way-shooting-star.webp"
-                alt="Milky Way Shooting Star"
-                className="w-full h-auto rounded-xl"
-              />
-            </div>
-            {/* Image Overlay Effects */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
-          </div>
-
-          {/* Loading Dots */}
-          <div className="flex justify-center items-center space-x-2 mt-8">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"
-                style={{ animationDelay: `${i * 0.2}s` }}
-              ></div>
-            ))}
+          {/* Info message */}
+          <div className="bg-blue-500/5 dark:bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-center">
+            <p className="text-sm text-[var(--foreground)]">
+              Your credentials have been verified.
+            </p>
+            <p className="text-xs text-[var(--muted-foreground)] mt-1">
+              You will be redirected shortly.
+            </p>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-8">
-          <div className="flex items-center justify-center space-x-2 text-gray-500 text-sm">
-            <Shield className="w-4 h-4" />
-            <span>Secured by Kepler Authentication System</span>
+        <div className="text-center mt-6">
+          <div className="flex items-center justify-center space-x-2 text-[var(--muted-foreground)] text-xs">
+            <Shield className="w-3.5 h-3.5" />
+            <span>Secured by Kepler Authentication</span>
           </div>
         </div>
-
-        {/* Floating Elements */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full blur-2xl animate-float"></div>
-        <div className="absolute -bottom-20 -right-20 w-32 h-32 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-full blur-2xl animate-float animation-delay-2000"></div>
       </div>
-
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          33% { transform: translateY(-10px) translateX(5px); }
-          66% { transform: translateY(5px) translateX(-5px); }
-        }
-        
-        .animate-twinkle {
-          animation: twinkle 2s ease-in-out infinite;
-        }
-        
-        .animate-shimmer {
-          animation: shimmer 2s linear infinite;
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        
-        .bg-grid-white\/\[0\.02\] {
-          background-image: url("data:image/svg+xml,%3csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3e%3cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='1' stroke-opacity='0.02'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23grid)' /%3e%3c/svg%3e");
-        }
-      `}</style>
     </div>
   );
 }
