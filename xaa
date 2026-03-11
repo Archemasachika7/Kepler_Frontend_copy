@@ -1,0 +1,299 @@
+import React, { useState, useContext, useEffect, FC } from "react";
+import Avatar from "@mui/material/Avatar";
+import { MyContext } from "../main";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose, faChevronDown, faUser, faSignOutAlt, faGraduationCap, faBook, faUsers, faBell, faImage, faLayerGroup, faComments, faVideo, faHome, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
+import { componentPropsInterface } from "./Interfaces/ComponentProps.interface";
+import api from "../utils/api";
+import apiRoutes from "../utils/Routes/apiRoutes";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
+
+const Index: FC<componentPropsInterface> = ({ auth, details }) => {
+  var name = details?.name;
+  if (name != undefined) {
+    name = name[0];
+  }
+
+  const [navOpen, setNavOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [librarydrop, setLibrarydrop] = useState(false);
+  const [noticedrop, setNoticedrop] = useState(false);
+  const context = useContext(MyContext);  
+  const adminemails = context?.adminemails ?? []
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    setLoading(true);
+    const response = await api.post(apiRoutes.auth.logout, {
+        email: details?.email,
+      });
+    if (response.status == 200) {
+      Cookies.remove("AccessToken", { path: '/'})
+      Cookies.remove("RefreshToken", { path: '/'})
+      Cookies.remove("ProfileInfo", { path: '/'})
+      localStorage.setItem("toast_message", "Logout Successful!");
+      localStorage.removeItem("userCode");
+      localStorage.removeItem("email");
+      setLoading(false);
+      window.location.href = '/';
+    } else {
+      setLoading(false);
+      toast.error("Do again");
+    }
+  };
+
+  return (
+    <>
+      {/* Desktop Navigation */}
+      <header className="hidden md:block bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            
+            {/* Logo & Brand */}
+            <div className="flex items-center ml-[-100px]">
+              <Link to="/" className="flex items-center space-x-3 group">
+                <div className="relative">
+                  <img
+                    src="/Images/Kepler_Logo.png"
+                    alt="Kepler 22B"
+                    width={40}
+                    height={40}
+                    className="rounded-lg transition-transform group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold text-gray-900 tracking-tight">Kepler 22B</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Main Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link 
+                to="/" 
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname === "/" ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                <FontAwesomeIcon icon={faHome} className="mr-2" />
+                Home
+              </Link>
+
+              <Link 
+                to="/aboutus"
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname === "/aboutus" ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
+                About Us
+              </Link>
+
+              <Link 
+                to="/courses"
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname === "/courses" ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
+                Courses
+              </Link>
+
+              {/* Admins Dropdown */}
+              <div className="relative group">
+                <button 
+                  className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                    window.location.pathname.startsWith("/admins") ? "text-blue-600" : "text-gray-700"
+                  }`}
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                >
+                  <FontAwesomeIcon icon={faUsers} className="mr-2" />
+                  Admins
+                  <FontAwesomeIcon icon={faChevronDown} className="ml-1 h-3 w-3" />
+                </button>
+                
+                {dropdownOpen && (
+                  <div 
+                    className="absolute top-3 left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    <div className="py-1">
+                      <Link 
+                        to="/admins/userlist" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${auth ? "" : "hidden"}`}
+                      >
+                        UserList
+                      </Link>
+                      <Link 
+                        to="/admins/liveusers" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                          auth ? "" : "hidden"
+                        } ${adminemails.includes(details?.email ?? "") ? "" : "hidden"}`}
+                      >
+                        Live Users
+                      </Link>
+                      <Link 
+                        to="/admins/historyusers" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                          auth ? "" : "hidden"
+                        } ${adminemails.includes(details?.email ?? "") ? "" : "hidden"}`}
+                      >
+                        User History
+                      </Link>
+                      <Link 
+                        to="/admins/adminDashboard" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                          auth ? "" : "hidden"
+                        } ${adminemails.includes(details?.email ?? "") ? "" : "hidden"}`}
+                      >
+                        Admin Dashboard
+                      </Link>
+                      <Link 
+                        to="/admins/courseToStudentList" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                          auth ? "" : "hidden"
+                        } ${adminemails.includes(details?.email ?? "") ? "" : "hidden"}`}
+                      >
+                        Course To Students
+                      </Link>
+                      <Link 
+                        to="/admins/studentMonitoring" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                          auth ? "" : "hidden"
+                        } ${adminemails.includes(details?.email ?? "") ? "" : "hidden"}`}
+                      >
+                        Student Tracker
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Library Dropdown */}
+              <div className={`relative group ${auth ? "" : "hidden"}`}>
+                <button 
+                  className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                    window.location.pathname.startsWith("/library") ? "text-blue-600" : "text-gray-700"
+                  }`}
+                  onMouseEnter={() => setLibrarydrop(true)}
+                  onMouseLeave={() => setLibrarydrop(false)}
+                >
+                  <FontAwesomeIcon icon={faBook} className="mr-2" />
+                  Library
+                  <FontAwesomeIcon icon={faChevronDown} className="ml-1 h-3 w-3" />
+                </button>
+                
+                {librarydrop && (
+                  <div 
+                    className="absolute top-3 left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    onMouseEnter={() => setLibrarydrop(true)}
+                    onMouseLeave={() => setLibrarydrop(false)}
+                  >
+                    <div className="py-1">
+                      <Link to="/library/resources" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Resources
+                      </Link>
+                      <Link to="/problems/allProblems" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Problems
+                      </Link> 
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <Link 
+                to="/group_chat" 
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname.startsWith("/group_chat") ? "text-blue-600" : "text-gray-700"
+                } ${auth ? "" : "hidden"}`}
+              >
+                <FontAwesomeIcon icon={faComments} className="mr-2" />
+                Group Chat
+              </Link>
+
+              <Link 
+                to="/meeting"
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname === "/meeting" ? "text-blue-600" : "text-gray-700"
+                } ${auth ? "" : "hidden"}`}
+              >
+                <FontAwesomeIcon icon={faVideo} className="mr-2" />
+                Meeting
+              </Link>
+
+              <Link 
+                to="https://kepler-22b.vercel.app"
+                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                  window.location.pathname.startsWith("/gallery") ? "text-blue-600" : "text-gray-700"
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faImage} className="mr-2" />
+                Gallery
+              </Link>
+
+              {/* Notice Updates Dropdown */}
+              <div className="relative group">
+                <button 
+                  className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
+                    window.location.pathname.startsWith("/notice") ? "text-blue-600" : "text-gray-700"
+                  }`}
+                  onMouseEnter={() => setNoticedrop(true)}
+                  onMouseLeave={() => setNoticedrop(false)}
+                >
+                  <FontAwesomeIcon icon={faBell} className="mr-2" />
+                  Updates
+                  <FontAwesomeIcon icon={faChevronDown} className="ml-1 h-3 w-3" />
+                </button>
+                
+                {noticedrop && (
+                  <div 
+                    className="absolute top-3 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    onMouseEnter={() => setNoticedrop(true)}
+                    onMouseLeave={() => setNoticedrop(false)}
+                  >
+                    <div className="py-1">
+                      <Link 
+                        to="/notice/notices" 
+                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${auth ? "" : "hidden"}`}
+                      >
+                        Notice and Circulars
+                      </Link>
+                      <Link to="/notice/connection" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Connections
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </nav>
+
+            {/* Right side actions */}
+            <div className="flex items-center space-x-4 mr-[-100px]">
+              {/* Profile Avatar */}
+              <div className={`${auth ? "" : "hidden"}`}>
+                <Link to="/profiles">
+                  <Avatar
+                    sx={{
+                      bgcolor: window.location.pathname === "/profiles" ? "#2563eb" : "#374151",
+                      width: 32,
+                      height: 32,
+                      fontSize: "0.875rem",
+                      fontWeight: 600
+                    }}
+                    className="hover:scale-105 transition-transform cursor-pointer"
+                  >
+                    {name}
+                  </Avatar>
+                </Link>
+              </div>
+
+              {/* Login Button */}
+              <Link
+                to="/login"
