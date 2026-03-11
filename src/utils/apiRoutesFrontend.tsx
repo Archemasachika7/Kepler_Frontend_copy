@@ -43,16 +43,16 @@ export const RouterFrontend = (authenticated: boolean, details: userdetails | un
   return createBrowserRouter([
     {
       path: "/",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <LandingPage authenticated={authenticated} />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/",
       element: <MainLayout auth = {authenticated} details = {details}/>,
       children: [
-        {
-          index: true,
-          element: (
-            <Suspense fallback={<div>Loading...</div>}>
-              <LandingPage />
-            </Suspense>
-          ),
-        },
         {
           path: "authlogin/:email",
           element: (

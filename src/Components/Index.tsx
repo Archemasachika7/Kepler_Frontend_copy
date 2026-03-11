@@ -83,16 +83,6 @@ const Index: FC<componentPropsInterface> = ({ auth, details }) => {
               </Link>
 
               <Link 
-                to="/aboutus"
-                className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
-                  window.location.pathname === "/aboutus" ? "text-blue-600" : "text-gray-700"
-                }`}
-              >
-                <FontAwesomeIcon icon={faQuestionCircle} className="mr-2" />
-                About Us
-              </Link>
-
-              <Link 
                 to="/courses"
                 className={`flex items-center text-sm font-medium transition-colors hover:text-blue-600 ${
                   window.location.pathname === "/courses" ? "text-blue-600" : "text-gray-700"
@@ -276,6 +266,15 @@ const Index: FC<componentPropsInterface> = ({ auth, details }) => {
 
             {/* Right side actions */}
             <div className="flex items-center space-x-4 mr-[-100px]">
+              {/* Notifications Button */}
+              <button
+                className={`relative p-2 rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors ${auth ? "" : "hidden"}`}
+                title="Notifications"
+              >
+                <FontAwesomeIcon icon={faBell} className="h-5 w-5" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              </button>
+
               {/* Profile Avatar */}
               <div className={`${auth ? "" : "hidden"}`}>
                 <Link to="/profiles">
@@ -362,19 +361,6 @@ const Index: FC<componentPropsInterface> = ({ auth, details }) => {
               >
                 <FontAwesomeIcon icon={faHome} className="mr-3" />
                 Home
-              </Link>
-
-              <Link 
-                to="/aboutus"
-                className={`flex items-center px-3 py-2 rounded-md text-base font-medium ${
-                  window.location.pathname === "/aboutus" 
-                    ? "text-blue-600 bg-blue-50" 
-                    : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                }`}
-                  onClick={() => setNavOpen(false)}
-              >
-                <FontAwesomeIcon icon={faQuestionCircle} className="mr-3" />
-                About Us
               </Link>
 
               <Link 

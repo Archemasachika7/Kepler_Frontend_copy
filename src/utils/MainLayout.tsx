@@ -7,7 +7,7 @@ const MainLayout: FC<componentPropsInterface> = ({ auth, details }) => {
   return (
     <div> 
       <div
-        className={`sticky top-0 left-0 z-20 bg-gray-200`}
+        className={`sticky top-0 left-0 z-20`}
       >
         <Suspense>
           <Index auth={auth} details={details} />

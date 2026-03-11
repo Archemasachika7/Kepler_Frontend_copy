@@ -29,7 +29,11 @@ import SpotlightHoverCards from "./SpotlightHoverCards";
 import GitBranchTimeline from "./GitBranchTimeline";
 import InteractiveCodeEditor from "./InteractiveCodeEditor";
 
-export default function LandingPage() {
+interface LandingPageProps {
+  authenticated?: boolean;
+}
+
+export default function LandingPage({ authenticated = false }: LandingPageProps) {
   return (
     <>
       <TerminalBootLoader />
@@ -37,7 +41,7 @@ export default function LandingPage() {
       <FloatingSymbols />
       <SpotlightCursor />
       <div className="relative z-10">
-        <LandingNavbar />
+        <LandingNavbar authenticated={authenticated} />
         <Hero />
         <TrustBar />
         <ScrollStory />
