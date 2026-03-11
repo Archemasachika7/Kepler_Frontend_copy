@@ -3,6 +3,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, Code2, BookOpen, Users } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "../../lib/utils";
+import { useNavigate } from "react-router-dom";
 
 interface LandingNavbarProps {
   authenticated?: boolean;
@@ -17,16 +18,19 @@ export default function LandingNavbar({ authenticated = false }: LandingNavbarPr
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
   });
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     if (!authenticated) {
-      e.preventDefault();
       localStorage.setItem("redirectAfterLogin", href);
-      window.location.href = "/login";
+      navigate("/login");
+    } else {
+      navigate(href);
     }
   };
 

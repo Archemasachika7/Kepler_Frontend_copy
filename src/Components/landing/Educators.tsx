@@ -12,7 +12,7 @@ interface Educator {
   linkedin: string;
 }
 
-const placeholderEducators: Educator[] = [
+const featuredEducators: Educator[] = [
   {
     id: 1,
     name: "Arjun Mehta",
@@ -88,7 +88,7 @@ const getPositionStyles = (position: number, total: number) => {
 };
 
 export default function Educators() {
-  const [educators] = useState<Educator[]>(placeholderEducators);
+  const [educators] = useState<Educator[]>(featuredEducators);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -168,7 +168,9 @@ export default function Educators() {
                           alt={educator.name}
                           className="w-full h-full rounded-full object-cover bg-[var(--card)]"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(educator.name)}&size=300&background=6366f1&color=fff`;
+                            const target = e.target as HTMLImageElement;
+                            target.onerror = null;
+                            target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(educator.name)}&size=300&background=6366f1&color=fff`;
                           }}
                         />
                       </div>

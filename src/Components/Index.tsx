@@ -269,6 +269,7 @@ const Index: FC<componentPropsInterface> = ({ auth, details }) => {
               {/* Notifications Button */}
               <button
                 className={`relative p-2 rounded-full text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors ${auth ? "" : "hidden"}`}
+                aria-label="Notifications (coming soon)"
                 title="Notifications"
               >
                 <FontAwesomeIcon icon={faBell} className="h-5 w-5" />
